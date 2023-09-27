@@ -1,2 +1,3 @@
-# 307assignment1
-# creating a simple web act using React.js
+# First assignment for Intro to Software Engineering class
+
+This assignment consists of creating a simple web app using React.js.
