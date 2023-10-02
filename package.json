@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "create-react-app": "^5.0.1"
-  }
+  },
+  "name": "csc307-react-app",
+  "description": "This assignment consists of creating a simple web app using React.js.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd react-frontend && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelmurrayiv/307assignment1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelmurrayiv/307assignment1/issues"
+  },
+  "homepage": "https://github.com/michaelmurrayiv/307assignment1#readme"
 }
