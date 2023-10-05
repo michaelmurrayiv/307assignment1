@@ -6,7 +6,9 @@
   "description": "This assignment consists of creating a simple web app using React.js.",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd react-frontend && npm start"
@@ -22,6 +24,6 @@
   },
   "homepage": "https://github.com/michaelmurrayiv/307assignment1#readme",
   "workspaces": [
-          "packages/*"
+    "packages/*"
   ]
 }
