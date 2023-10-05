@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/michaelmurrayiv/307assignment1/issues"
   },
-  "homepage": "https://github.com/michaelmurrayiv/307assignment1#readme"
+  "homepage": "https://github.com/michaelmurrayiv/307assignment1#readme",
+  "workspaces": [
+          "packages/*"
+  ]
 }
