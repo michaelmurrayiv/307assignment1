@@ -56,8 +56,12 @@ app.post('/users', (req, res) => {
 // delete users by id
 app.delete('/users/:id', (req, res) => {
     const userToRemove = req.params['id'];
-    removeUser(userToRemove);
-    res.send();
+    const ret = removeUser(userToRemove);
+    if (ret === -1) {
+        res.status(404).send();
+    } else {
+        res.status(204).send();
+    }
 });
 
 // helper functions
@@ -78,10 +82,14 @@ const addUser = (user) => {
 
 const removeUser = (id) => {
     //find index of user to be removed
-    const ind = users['users_list'].map( (user) => user['id'] === id);
+    const ind = users['users_list'].findIndex( (user) => user['id'] === id);
     //splice command mutates the array
-    return users['users_list']
-        .splice(ind, 1);
+    if (ind >= 0) {
+        return users['users_list']
+            .splice(ind, 1);
+    } else {
+        return -1
+    }
 }
 
 const findUserByNameAndJob = (name, job) => { 
