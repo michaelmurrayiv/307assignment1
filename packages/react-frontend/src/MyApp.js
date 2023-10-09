@@ -14,7 +14,14 @@ function MyApp() {
 
   function updateList(person) { 
     postUser(person)
-      .then(() => setCharacters([...characters, person]))
+      .then(
+        (response) => {
+          if (response.status === 201) {     
+            setCharacters([...characters, person])
+          } else {
+            console.log("Error: unexpected status code: ", response.status);
+          }
+        })
       .catch((error) => {
         console.log(error);
       })
