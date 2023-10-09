@@ -7,10 +7,12 @@ app.use(express.json());
 
 // routes
 
+// page containing "hello world"
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+// get all users
 app.get('/users', (req, res) => {
     const name = req.query.name;
     if (name != undefined){
@@ -23,6 +25,7 @@ app.get('/users', (req, res) => {
     }
 });
 
+// get users by id
 app.get('/users/:id', (req, res) => {
     const id = req.params['id'];
     let result = findUserById(id);
@@ -33,11 +36,20 @@ app.get('/users/:id', (req, res) => {
     }
 });
 
+// add users
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     addUser(userToAdd);
     res.send();
 });
+
+// delete users by id
+app.delete('/users/:id', (req, res) => {
+    const userToRemove = req.params['id'];
+    removeUser(userToRemove);
+    res.send();
+});
+
 
 // helper functions
 
@@ -53,6 +65,14 @@ const findUserById = (id) =>
 const addUser = (user) => {
     users['users_list'].push(user);
     return user;
+}
+
+const removeUser = (id) => {
+    //find index of user to be removed
+    var ind = users['users_list'].map( (user) => user['id'] === id);
+    //splice command mutates the array
+    return users['users_list']
+        .splice(ind, 1);
 }
 
 // -------------------------
