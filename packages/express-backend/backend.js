@@ -12,11 +12,18 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-// get all users
+// get users (by name if requested using users?name=:name)
 app.get('/users', (req, res) => {
     const name = req.query.name;
+    const job = req.query.job;
     if (name != undefined){
-        let result = findUserByName(name);
+        let result;
+        if (job == undefined) { // only name was provided
+            result = findUserByName(name);
+        } else { // both name and job were provided
+            result = findUserByNameAndJob(name, job);
+        }
+
         result = {users_list: result};
         res.send(result);
     }
@@ -50,7 +57,6 @@ app.delete('/users/:id', (req, res) => {
     res.send();
 });
 
-
 // helper functions
 
 const findUserByName = (name) => { 
@@ -73,6 +79,12 @@ const removeUser = (id) => {
     //splice command mutates the array
     return users['users_list']
         .splice(ind, 1);
+}
+
+const findUserByNameAndJob = (name, job) => { 
+    return users['users_list']
+        .filter( (user) => user['name'] === name)
+        .filter( (user) => user['job'] === job); 
 }
 
 // -------------------------
