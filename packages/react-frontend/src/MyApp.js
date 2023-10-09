@@ -16,12 +16,15 @@ function MyApp() {
     postUser(person)
       .then(
         (response) => {
-          if (response.status === 201) {     
-            setCharacters([...characters, person])
-          } else {
+          if (response.status !== 201) { 
             console.log("Error: unexpected status code: ", response.status);
+          } else {
+            return response.json(); 
           }
         })
+      .then((json) =>             
+        setCharacters([...characters, json])
+      )
       .catch((error) => {
         console.log(error);
       })

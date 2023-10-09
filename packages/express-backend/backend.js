@@ -48,8 +48,9 @@ app.get('/users/:id', (req, res) => {
 // add users
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
+    userToAdd["id"] = Math.floor(1000000 * Math.random());
     addUser(userToAdd);
-    res.status(201).send();
+    res.status(201).send(userToAdd);
 });
 
 // delete users by id
@@ -71,14 +72,13 @@ const findUserById = (id) =>
         .find( (user) => user['id'] === id);
 
 const addUser = (user) => {
-    user["id"] = Math.floor(1000000 * Math.random());
     users['users_list'].push(user);
     return user;
 }
 
 const removeUser = (id) => {
     //find index of user to be removed
-    var ind = users['users_list'].map( (user) => user['id'] === id);
+    const ind = users['users_list'].map( (user) => user['id'] === id);
     //splice command mutates the array
     return users['users_list']
         .splice(ind, 1);
