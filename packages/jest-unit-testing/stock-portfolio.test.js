@@ -47,3 +47,11 @@ test('Testing Portfolio numShares -- success', () => {
     
     expect(p.numShares("MSFT")).toEqual(expected);
 });
+
+test('Testing Portfolio ticker without shares -- success', () => {
+    const expected = [];
+    p.buy("MSFT", 50);
+    p.sell("MSFT", 50);
+    
+    expect(p.getStocks()).toEqual(expected);
+});
