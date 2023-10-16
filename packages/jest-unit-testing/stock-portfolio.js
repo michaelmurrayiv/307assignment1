@@ -12,6 +12,16 @@ export default class Portfolio {
         return this.stocks.length;
     }
     add(symbol, num) {
-        this.stocks.push([symbol, num]);
+        const i = 0;
+        while (i < this.stocks.length) {
+            if (this.stocks[i][0] === symbol) {
+                this.stocks[i][1] += num;
+                break;
+            }
+            i++;
+        }
+        if (i === this.stocks.length) {
+            this.stocks.push([symbol, num]);
+        }
     }
 };

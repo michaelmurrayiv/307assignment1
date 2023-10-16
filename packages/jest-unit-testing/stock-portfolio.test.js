@@ -23,5 +23,11 @@ test('Testing Portfolio add -- success', () => {
     p.add("MSFT", 30);
     
     expect(p.getStocks()).toEqual(expected);
-    
+});
+
+test('Testing Portfolio add to existing stock -- success', () => {
+    const expected = [["MSFT", 50]];
+    p.add("MSFT", 30);
+    p.add("MSFT", 20);
+    expect(p.getStocks()).toEqual(expected);
 });
