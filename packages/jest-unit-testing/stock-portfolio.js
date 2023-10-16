@@ -5,4 +5,7 @@ export default class Portfolio {
     isEmpty() {
         return this.stocks.length === 0;
     }
+    numTickers() {
+        return this.stocks.length;
+    }
 };

@@ -13,3 +13,7 @@ test('Testing Portfolio exists -- success', () => {
 test('Testing Portfolio.isEmpty -- success', () => {
     expect(p.isEmpty()).toBeTruthy()
 });
+
+test('Testing Portfolio count -- success', () => {
+    expect(p.numTickers()).toBe(0)
+});
