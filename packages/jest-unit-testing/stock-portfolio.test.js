@@ -18,16 +18,24 @@ test('Testing Portfolio count -- success', () => {
     expect(p.numTickers()).toBe(0)
 });
 
-test('Testing Portfolio add -- success', () => {
+test('Testing Portfolio buy -- success', () => {
     const expected = [["MSFT", 30]];
-    p.add("MSFT", 30);
+    p.buy("MSFT", 30);
     
     expect(p.getStocks()).toEqual(expected);
 });
 
-test('Testing Portfolio add to existing stock -- success', () => {
+test('Testing Portfolio buy to existing stock -- success', () => {
     const expected = [["MSFT", 50]];
-    p.add("MSFT", 30);
-    p.add("MSFT", 20);
+    p.buy("MSFT", 30);
+    p.buy("MSFT", 20);
+    expect(p.getStocks()).toEqual(expected);
+});
+
+test('Testing Portfolio sell -- success', () => {
+    const expected = [["MSFT", 20]];
+    p.buy("MSFT", 50)
+    p.sell("MSFT", 30);
+    
     expect(p.getStocks()).toEqual(expected);
 });

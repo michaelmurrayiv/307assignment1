@@ -11,8 +11,8 @@ export default class Portfolio {
     numTickers() {
         return this.stocks.length;
     }
-    add(symbol, num) {
-        const i = 0;
+    buy(symbol, num) {
+        let i = 0;
         while (i < this.stocks.length) {
             if (this.stocks[i][0] === symbol) {
                 this.stocks[i][1] += num;
@@ -22,6 +22,18 @@ export default class Portfolio {
         }
         if (i === this.stocks.length) {
             this.stocks.push([symbol, num]);
+        }
+    }
+    sell(symbol, num) {
+        let i = 0;
+        while (i < this.stocks.length) {
+            if (this.stocks[i][0] === symbol) {
+                this.stocks[i][1] -= num;
+                if (this.stocks[i][1]<=0) {
+                    this.stocks.splice(i, 1);
+                }
+            }
+            i++;
         }
     }
 };
