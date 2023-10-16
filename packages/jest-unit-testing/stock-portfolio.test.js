@@ -55,3 +55,9 @@ test('Testing Portfolio ticker without shares -- success', () => {
     
     expect(p.getStocks()).toEqual(expected);
 });
+
+test('Testing sell can raise exception -- success', () => {
+    p.buy("MSFT", 50);
+
+    expect(() => p.sell("MSFT", 60)).toThrow();
+});

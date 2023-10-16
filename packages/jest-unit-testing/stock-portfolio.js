@@ -29,8 +29,11 @@ export default class Portfolio {
         while (i < this.stocks.length) {
             if (this.stocks[i][0] === symbol) {
                 this.stocks[i][1] -= num;
-                if (this.stocks[i][1]<=0) {
+                if (this.stocks[i][1]===0) {
                     this.stocks.splice(i, 1);
+                } else if (this.stocks[i][1]<0) {
+                    throw new ShareSaleException
+                    ("There are", this.stocks[i][1], this.stocks[i][0])
                 }
             }
             i++;
@@ -45,3 +48,9 @@ export default class Portfolio {
         }
     }
 };
+class ShareSaleException extends Error {
+    constructor (message, value, stock) {
+        super(`${message} ${value} shares remaining in ${stock}`);
+        this.name = "Share Sale Exception";
+    }
+}
