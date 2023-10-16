@@ -1,4 +1,4 @@
-import Portfolio from './stock-Portfolio.js';
+import Portfolio from './stock-portfolio.js';
 
 let p;
 
