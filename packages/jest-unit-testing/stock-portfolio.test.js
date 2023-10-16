@@ -34,8 +34,16 @@ test('Testing Portfolio buy to existing stock -- success', () => {
 
 test('Testing Portfolio sell -- success', () => {
     const expected = [["MSFT", 20]];
-    p.buy("MSFT", 50)
+    p.buy("MSFT", 50);
     p.sell("MSFT", 30);
     
     expect(p.getStocks()).toEqual(expected);
+});
+
+test('Testing Portfolio numShares -- success', () => {
+    const expected = 20;
+    p.buy("MSFT", 50);
+    p.sell("MSFT", 30);
+    
+    expect(p.numShares("MSFT")).toEqual(expected);
 });

@@ -36,4 +36,12 @@ export default class Portfolio {
             i++;
         }
     }
+    numShares(ticker) {
+        let i=0;
+        while (i<this.stocks.length) {
+            if (this.stocks[i][0] === ticker) {
+                return this.stocks[i][1];
+            }
+        }
+    }
 };
