@@ -34,6 +34,11 @@ function addUser(user) {
   return promise;
 }
 
+function removeUser(id) {
+  const promise = userModel.findByIdAndDelete(id);
+  return promise;
+}
+
 function findUserByName(name) {
   return userModel.find({ name: name });
 }
@@ -52,4 +57,6 @@ export default {
   findUserById,
   findUserByName,
   findUserByJob,
+  findUserByNameAndJob,
+  removeUser
 };
