@@ -1,5 +1,8 @@
 import express from "express";
 import cors from "cors";
+import userServices from "./user-services.js"
+//import {addUser, getUsers, findUserById, findUserByName, findUserByJob}
+//    from "./user-services"
 
 const app = express();
 const port = 8000;
@@ -16,22 +19,29 @@ app.get('/', (req, res) => {
 
 // get users (by name if requested using users?name=:name)
 app.get('/users', (req, res) => {
-    const name = req.query.name;
-    const job = req.query.job;
-    if (name != undefined){
-        let result;
-        if (job == undefined) { // only name was provided
-            result = findUserByName(name);
-        } else { // both name and job were provided
-            result = findUserByNameAndJob(name, job);
-        }
+    userServices.getUsers(req.query.name, req.query.job)
+        .then ((result) => {
+            res.send(result)
+        })
+        .catch((error) => {
+            res.status(500).send("Error: " + error);
+        })
+    // const name = req.query.name;
+    // const job = req.query.job;
+    // if (name != undefined){
+    //     let result;
+    //     if (job == undefined) { // only name was provided
+    //         result = findUserByName(name);
+    //     } else { // both name and job were provided
+    //         result = findUserByNameAndJob(name, job);
+    //     }
 
-        result = {users_list: result};
-        res.send(result);
-    }
-    else{
-        res.send(users);
-    }
+    //     result = {users_list: result};
+    //     res.send(result);
+    // }
+    // else{
+    //     res.send(users);
+    // }
 });
 
 // get users by id
