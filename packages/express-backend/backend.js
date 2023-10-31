@@ -1,8 +1,6 @@
 import express from "express";
 import cors from "cors";
 import userServices from "./user-services.js"
-//import {addUser, getUsers, findUserById, findUserByName, findUserByJob}
-//    from "./user-services"
 
 const app = express();
 const port = 8000;
@@ -26,41 +24,28 @@ app.get('/users', (req, res) => {
         .catch((error) => {
             res.status(500).send("Error: " + error);
         })
-    // const name = req.query.name;
-    // const job = req.query.job;
-    // if (name != undefined){
-    //     let result;
-    //     if (job == undefined) { // only name was provided
-    //         result = findUserByName(name);
-    //     } else { // both name and job were provided
-    //         result = findUserByNameAndJob(name, job);
-    //     }
-
-    //     result = {users_list: result};
-    //     res.send(result);
-    // }
-    // else{
-    //     res.send(users);
-    // }
 });
 
 // get users by id
 app.get('/users/:id', (req, res) => {
-    const id = req.params['id'];
-    let result = findUserById(id);
-    if (result === undefined) {
-        res.status(404).send('Resource not found.');
-    } else {
-        res.send(result);
-    }
+    userServices.findUserById(req.params['id'])
+        .then ((result) => {
+            res.send(result)
+        })
+        .catch((error) => {
+            res.status(500).send("Error: " + error);
+        })
 });
 
 // add users
 app.post('/users', (req, res) => {
-    const userToAdd = req.body;
-    userToAdd["id"] = Math.floor(1000000 * Math.random());
-    addUser(userToAdd);
-    res.status(201).send(userToAdd);
+    userServices.addUser(req.body)
+        .then ((result) => {
+            res.status(201).send(result)
+        })
+        .catch((error) => {
+            res.status(500).send("Error: " + error);
+        })
 });
 
 // delete users by id
